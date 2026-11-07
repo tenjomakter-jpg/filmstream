@@ -8,36 +8,45 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0f19; color: #fff; }
         
-        /* Header */
+        /* Header Navigation */
         header { background-color: #111827; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1f2937; position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 18px; font-weight: bold; color: #ef4444; text-decoration: none; cursor: pointer; }
+        .logo { font-size: 18px; font-weight: bold; color: #ef4444; text-decoration: none; cursor: pointer; display: flex; align-items: center; gap: 5px; }
         .search-box input { padding: 6px 12px; border-radius: 4px; border: 1px solid #374151; background: #0b0f19; color: #fff; width: 150px; outline: none; font-size: 12px; }
 
-        /* Categories Bar */
-        .categories-wrapper { background: #111827; padding: 8px 10px; display: flex; gap: 6px; overflow-x: auto; border-bottom: 1px solid #1f2937; white-space: nowrap; }
-        .categories-wrapper::-webkit-scrollbar { display: none; }
-        .cat-badge { background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
-        .cat-badge.sub { background: #d97706; }
+        /* Full MyFlixBD Style Category Navigation Bar */
+        .category-bar-wrapper { background: #111827; padding: 10px; border-bottom: 1px solid #1f2937; display: flex; flex-direction: column; gap: 8px; }
+        .cat-group { display: flex; gap: 5px; overflow-x: auto; white-space: nowrap; }
+        .cat-group::-webkit-scrollbar { display: none; }
+        
+        .cat-badge { background: #dc2626; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+        .cat-badge.series { background: #d97706; }
+        .cat-badge.sub { background: #2563eb; }
+        .cat-badge.special { background: #7c3aed; }
 
-        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 15px 12px 10px 12px; }
-        .section-title { font-size: 14px; font-weight: bold; color: #f3f4f6; border-left: 3px solid #ef4444; padding-left: 6px; text-transform: uppercase; }
+        /* Section Title Styling */
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 18px 12px 10px 12px; }
+        .section-title { font-size: 14px; font-weight: bold; color: #f3f4f6; border-left: 3px solid #ef4444; padding-left: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .view-all { font-size: 11px; color: #ef4444; text-decoration: none; font-weight: bold; cursor: pointer; }
 
-        /* Movie Grid */
+        /* Movie Grid Layout */
         .movie-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 12px; }
         @media(min-width: 480px) { .movie-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media(min-width: 768px) { .movie-grid { grid-template-columns: repeat(5, 1fr); } }
         
-        .movie-card { background-color: #111827; border-radius: 6px; overflow: hidden; cursor: pointer; border: 1px solid #1f2937; display: flex; flex-direction: column; }
-        .poster-container { position: relative; width: 100%; height: 180px; background: #1f2937; }
+        .movie-card { background-color: #111827; border-radius: 6px; overflow: hidden; cursor: pointer; border: 1px solid #1f2937; display: flex; flex-direction: column; transition: transform 0.2s; }
+        .movie-card:active { transform: scale(0.98); }
+        
+        .poster-container { position: relative; width: 100%; height: 190px; background: #1f2937; }
         .movie-poster { width: 100%; height: 100%; object-fit: cover; }
         
-        .rating-badge { position: absolute; top: 5px; left: 5px; background: rgba(0, 0, 0, 0.75); color: #fbbf24; font-size: 10px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
-        .quality-badge { position: absolute; top: 5px; right: 5px; background: #ef4444; color: white; font-size: 9px; padding: 2px 4px; border-radius: 3px; font-weight: bold; text-transform: uppercase; }
+        .rating-badge { position: absolute; top: 5px; left: 5px; background: rgba(0, 0, 0, 0.8); color: #fbbf24; font-size: 10px; padding: 2px 5px; border-radius: 3px; font-weight: bold; backdrop-filter: blur(2px); }
+        .quality-badge { position: absolute; top: 5px; right: 5px; background: #ef4444; color: white; font-size: 9px; padding: 2px 5px; border-radius: 3px; font-weight: bold; text-transform: uppercase; }
 
         .movie-info { padding: 8px; display: flex; flex-direction: column; gap: 3px; }
         .movie-name { font-size: 12px; font-weight: 600; color: #f9fafb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .movie-tags { font-size: 10px; color: #9ca3af; }
 
-        /* Details View Styles */
+        /* Movie Details View Styles */
         #homePage, #detailsPage { display: block; }
         #detailsPage { display: none; }
 
@@ -50,7 +59,7 @@
 
         .download-section { padding: 15px; text-align: center; }
         .download-heading { color: #ef4444; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
-        .dl-btn { display: block; background: #111827; border: 1px solid #1f2937; color: #fff; padding: 10px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold; margin-bottom: 8px; }
+        .dl-btn { display: block; background: #111827; border: 1px solid #1f2937; color: #fff; padding: 10px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold; margin-bottom: 8px; transition: 0.2s; }
         .dl-btn:hover { background: #ef4444; border-color: #ef4444; }
 
         .section-box { padding: 10px 15px; }
@@ -61,46 +70,141 @@
 
         .back-btn { background: #1f2937; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; margin: 10px 15px; display: inline-block; }
 
-        footer { text-align: center; padding: 20px 15px; font-size: 11px; color: #9ca3af; margin-top: 30px; background: #111827; border-top: 1px solid #1f2937; }
+        footer { text-align: center; padding: 20px 15px; font-size: 11px; color: #9ca3af; margin-top: 30px; background: #111827; border-top: 1px solid #1f2937; line-height: 1.5; }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
     <header>
         <a class="logo" onclick="showHome()">🎬 FILMMASTI</a>
         <div class="search-box">
-            <input type="text" placeholder="Search movies...">
+            <input type="text" id="searchInput" placeholder="Search movies..." onkeyup="filterMovies()">
         </div>
     </header>
 
     <!-- ================= HOME PAGE SECTION ================= -->
     <div id="homePage">
-        <div class="categories-wrapper">
-            <a href="#" class="cat-badge" style="background:#dc2626;">🔥 HINDI</a>
-            <a href="#" class="cat-badge">⭐ HOLLYWOOD</a>
-            <a href="#" class="cat-badge">🇧🇩 BANGLA</a>
-            <a href="#" class="cat-badge">🎬 DUBBED</a>
-            <a href="#" class="cat-badge sub">📺 WEB SERIES</a>
+        
+        <!-- MyFlixBD All Category Badges -->
+        <div class="category-bar-wrapper">
+            <!-- Movies Line -->
+            <div class="cat-group">
+                <span style="font-size: 11px; color: #9ca3af; align-self: center; font-weight: bold; margin-right: 5px;">MOVIES:</span>
+                <a href="#" class="cat-badge">HINDI</a>
+                <a href="#" class="cat-badge">HOLLYWOOD</a>
+                <a href="#" class="cat-badge">BANGLA DUBBED</a>
+                <a href="#" class="cat-badge">HINDI DUBBED</a>
+                <a href="#" class="cat-badge">SOUTH INDIAN</a>
+                <a href="#" class="cat-badge">BANGLA</a>
+            </div>
+            <!-- Series Line -->
+            <div class="cat-group">
+                <span style="font-size: 11px; color: #9ca3af; align-self: center; font-weight: bold; margin-right: 5px;">SERIES:</span>
+                <a href="#" class="cat-badge series">HOLLYWOOD</a>
+                <a href="#" class="cat-badge series">ANIME</a>
+                <a href="#" class="cat-badge series">BANGLA</a>
+                <a href="#" class="cat-badge series">HINDI</a>
+                <a href="#" class="cat-badge series">K-DRAMA</a>
+                <a href="#" class="cat-badge series">BANGLA DUBBED</a>
+            </div>
         </div>
 
+        <!-- 1. TRENDING NOW SECTION -->
         <div class="section-header">
-            <span class="section-title">Trending Now</span>
+            <span class="section-title">🔥 Trending Now</span>
         </div>
-        <div class="movie-grid">
-            <!-- মুভি কার্ড (ক্লিক করলে ডিটেইলস দেখাবে) -->
-            <div class="movie-card" onclick="showDetails()">
+        <div class="movie-grid" id="trendingGrid">
+            
+            <!-- Trending Movie 1 -->
+            <div class="movie-card" onclick="showDetails('Ramayana: Rise of a Legend (2026)', '⭐ 7.3 / 10', 'Fantasy, Action, Adventure', '2026', 'Nitesh Tiwari', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300')">
                 <div class="poster-container">
                     <span class="rating-badge">⭐ 7.3</span>
-                    <span class="quality-badge">HDTC</span>
+                    <span class="quality-badge">HDTC-V2</span>
                     <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="movie-poster">
                 </div>
                 <div class="movie-info">
                     <div class="movie-name">Ramayana: Rise of a Legend</div>
+                    <div class="movie-tags">2026 • Multi Audio</div>
+                </div>
+            </div>
+
+            <!-- Trending Movie 2 -->
+            <div class="movie-card" onclick="showDetails('Jailer 2 (2026)', '⭐ 8.1 / 10', 'Action, Drama', '2026', 'Nelson', 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300')">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 8.1</span>
+                    <span class="quality-badge">WEB-DL</span>
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">Jailer 2 (2026)</div>
                     <div class="movie-tags">2026 • Hindi, Tamil</div>
                 </div>
             </div>
+
+            <!-- Trending Movie 3 -->
+            <div class="movie-card" onclick="showDetails('The Mongoose (2026)', '⭐ 7.8 / 10', 'Action, Thriller', '2026', 'Liam Neeson', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300')">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 7.8</span>
+                    <span class="quality-badge">WEB-DL</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">The Mongoose (2026)</div>
+                    <div class="movie-tags">2026 • Dual Audio</div>
+                </div>
+            </div>
+
         </div>
+
+        <!-- 2. LATEST UPLOAD SECTION -->
+        <div class="section-header" style="margin-top: 25px;">
+            <span class="section-title">⏱️ Latest Upload</span>
+            <span class="view-all">View all &gt;</span>
+        </div>
+        <div class="movie-grid" id="latestGrid">
+            
+            <!-- Latest Movie 1 -->
+            <div class="movie-card" onclick="showDetails('Love Between Lines', '⭐ 7.5 / 10', 'Romance, Drama', '2026', 'K-Series', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300')">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 7.5</span>
+                    <span class="quality-badge">WEB-DL</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">Love Between Lines</div>
+                    <div class="movie-tags">2026 • K-Drama</div>
+                </div>
+            </div>
+
+            <!-- Latest Movie 2 -->
+            <div class="movie-card" onclick="showDetails('Godzilla Minus Zero', '⭐ 8.0 / 10', 'Sci-Fi, Action', '2026', 'Takashi Yamazaki', 'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300')">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 8.0</span>
+                    <span class="quality-badge">HD</span>
+                    <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">Godzilla Minus Zero</div>
+                    <div class="movie-tags">2026 • Japanese</div>
+                </div>
+            </div>
+
+            <!-- Latest Movie 3 -->
+            <div class="movie-card" onclick="showDetails('Shesh Thikana (2026)', '⭐ 7.1 / 10', 'Drama, Thriller', '2026', 'Bangla Director', 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300')">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 7.1</span>
+                    <span class="quality-badge">WEB-DL</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">Shesh Thikana (2026)</div>
+                    <div class="movie-tags">2026 • Bangla Original</div>
+                </div>
+            </div>
+
+        </div>
+
     </div>
 
     <!-- ================= MOVIE DETAILS SECTION ================= -->
@@ -108,25 +212,24 @@
         <button class="back-btn" onclick="showHome()">← Back to Home</button>
         
         <div class="movie-hero">
-            <div class="hero-title">[Hindi-Tamil-Telugu] Watch Online And Download “HDTC-V2”</div>
+            <div class="hero-title" id="dTitle">[Hindi-Tamil-Telugu] Watch Online And Download HD</div>
             <div class="hero-content">
-                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="hero-poster">
+                <img id="dPoster" src="" class="hero-poster">
                 <div class="hero-details">
-                    <div class="rating">⭐ 7.3 / 10</div>
-                    <div><b>Year:</b> 2026</div>
-                    <div><b>Genre:</b> Fantasy, Action, Adventure</div>
-                    <div><b>Runtime:</b> 195 min</div>
-                    <div><b>Director:</b> Nitesh Tiwari</div>
-                    <div><b>Release:</b> 05 Nov, 2026</div>
+                    <div class="rating" id="dRating">⭐ 7.3 / 10</div>
+                    <div><b>Year:</b> <span id="dYear">2026</span></div>
+                    <div><b>Genre:</b> <span id="dGenre">Action, Adventure</span></div>
+                    <div><b>Director:</b> <span id="dDirector">Nitesh Tiwari</span></div>
+                    <div><b>Release:</b> 2026</div>
                 </div>
             </div>
         </div>
 
         <div class="download-section">
             <div class="download-heading">⬇️ Download Links ⬇️</div>
-            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 1080p (2.1 GB)</a>
-            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 720p (1.2 GB)</a>
-            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 480p (500 MB)</a>
+            <a href="DOWNLOAD_LINK_1080P" class="dl-btn" target="_blank">📥 Download 1080p (2.1 GB)</a>
+            <a href="DOWNLOAD_LINK_720P" class="dl-btn" target="_blank">📥 Download 720p (1.2 GB)</a>
+            <a href="DOWNLOAD_LINK_480P" class="dl-btn" target="_blank">📥 Download 480p (500 MB)</a>
         </div>
 
         <div class="section-box">
@@ -140,13 +243,20 @@
 
     <!-- Footer -->
     <footer>
-        <p>FilmMasti does not host any files on its servers.</p>
+        <p>FilmMasti does not host any files on its servers. All files are hosted on third-party websites.</p>
         <p style="margin-top: 5px;">&copy; 2026 FilmMasti. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript to Switch Views -->
+    <!-- JavaScript to Handle Views & Search -->
     <script>
-        function showDetails() {
+        function showDetails(title, rating, genre, year, director, poster) {
+            document.getElementById('dTitle').innerText = title;
+            document.getElementById('dRating').innerText = rating;
+            document.getElementById('dGenre').innerText = genre;
+            document.getElementById('dYear').innerText = year;
+            document.getElementById('dDirector').innerText = director;
+            document.getElementById('dPoster').src = poster;
+
             document.getElementById('homePage').style.display = 'none';
             document.getElementById('detailsPage').style.display = 'block';
             window.scrollTo(0, 0);
@@ -156,6 +266,20 @@
             document.getElementById('homePage').style.display = 'block';
             document.getElementById('detailsPage').style.display = 'none';
             window.scrollTo(0, 0);
+        }
+
+        function filterMovies() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.movie-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('.movie-name').innerText.toLowerCase();
+                if (title.includes(input)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
