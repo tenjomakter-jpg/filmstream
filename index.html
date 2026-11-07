@@ -3,105 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ramayana: Rise of a Legend (2026) - FilmMasti</title>
+    <title>FilmMasti - Watch & Download Free Movies & Web Series</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #0d1117; color: #fff; }
-        header { background-color: #161b22; padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #30363d; }
-        .logo { font-size: 20px; font-weight: bold; color: #ff385c; text-decoration: none; }
+        body { background-color: #0b0f19; color: #fff; }
         
-        /* Top Hero Section */
-        .movie-hero { background: linear-gradient(to bottom, #161b22, #0d1117); padding: 20px; display: flex; flex-direction: column; gap: 15px; border-bottom: 1px solid #30363d; }
-        .hero-title { font-size: 16px; font-weight: bold; line-height: 1.4; color: #f3f4f6; }
-        .hero-content { display: flex; gap: 15px; align-items: flex-start; }
-        .hero-poster { width: 110px; height: 155px; border-radius: 6px; object-fit: cover; border: 1px solid #30363d; flex-shrink: 0; }
-        .hero-details { font-size: 13px; color: #c9d1d9; display: flex; flex-direction: column; gap: 6px; }
-        .rating { color: #fbbf24; font-weight: bold; font-size: 14px; }
+        /* Header */
+        header { background-color: #111827; padding: 12px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1f2937; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 18px; font-weight: bold; color: #ef4444; text-decoration: none; cursor: pointer; }
+        .search-box input { padding: 6px 12px; border-radius: 4px; border: 1px solid #374151; background: #0b0f19; color: #fff; width: 150px; outline: none; font-size: 12px; }
 
-        /* Download Section */
-        .download-section { padding: 20px; text-align: center; }
-        .download-heading { color: #ff385c; font-size: 15px; font-weight: bold; margin-bottom: 15px; }
-        .dl-btn { display: block; background: #161b22; border: 1px solid #30363d; color: #fff; padding: 10px; border-radius: 5px; text-decoration: none; font-size: 13px; font-weight: bold; margin-bottom: 10px; transition: 0.2s; }
-        .dl-btn:hover { background: #ff385c; border-color: #ff385c; }
+        /* Categories Bar */
+        .categories-wrapper { background: #111827; padding: 8px 10px; display: flex; gap: 6px; overflow-x: auto; border-bottom: 1px solid #1f2937; white-space: nowrap; }
+        .categories-wrapper::-webkit-scrollbar { display: none; }
+        .cat-badge { background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .cat-badge.sub { background: #d97706; }
 
-        /* Screenshots Section */
-        .section-box { padding: 15px 20px; }
-        .section-heading { font-size: 14px; font-weight: bold; margin-bottom: 10px; color: #8b949e; }
-        .screenshots-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; }
-        .screenshot-img { width: 140px; height: 85px; border-radius: 4px; object-fit: cover; border: 1px solid #30363d; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin: 15px 12px 10px 12px; }
+        .section-title { font-size: 14px; font-weight: bold; color: #f3f4f6; border-left: 3px solid #ef4444; padding-left: 6px; text-transform: uppercase; }
 
-        /* Cast Section */
-        .cast-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 5px; text-align: center; }
-        .cast-item { width: 65px; flex-shrink: 0; }
-        .cast-img { width: 55px; height: 55px; border-radius: 50%; object-fit: cover; border: 2px solid #ff385c; margin-bottom: 4px; }
-        .cast-name { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* Movie Grid */
+        .movie-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 0 12px; }
+        @media(min-width: 480px) { .movie-grid { grid-template-columns: repeat(3, 1fr); } }
+        
+        .movie-card { background-color: #111827; border-radius: 6px; overflow: hidden; cursor: pointer; border: 1px solid #1f2937; display: flex; flex-direction: column; }
+        .poster-container { position: relative; width: 100%; height: 180px; background: #1f2937; }
+        .movie-poster { width: 100%; height: 100%; object-fit: cover; }
+        
+        .rating-badge { position: absolute; top: 5px; left: 5px; background: rgba(0, 0, 0, 0.75); color: #fbbf24; font-size: 10px; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .quality-badge { position: absolute; top: 5px; right: 5px; background: #ef4444; color: white; font-size: 9px; padding: 2px 4px; border-radius: 3px; font-weight: bold; text-transform: uppercase; }
 
-        footer { text-align: center; padding: 20px; font-size: 11px; color: #8b949e; background: #161b22; margin-top: 20px; }
+        .movie-info { padding: 8px; display: flex; flex-direction: column; gap: 3px; }
+        .movie-name { font-size: 12px; font-weight: 600; color: #f9fafb; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .movie-tags { font-size: 10px; color: #9ca3af; }
+
+        /* Details View Styles */
+        #homePage, #detailsPage { display: block; }
+        #detailsPage { display: none; }
+
+        .movie-hero { background: #111827; padding: 15px; border-bottom: 1px solid #1f2937; }
+        .hero-title { font-size: 14px; font-weight: bold; line-height: 1.4; color: #f3f4f6; margin-bottom: 12px; }
+        .hero-content { display: flex; gap: 12px; align-items: flex-start; }
+        .hero-poster { width: 100px; height: 145px; border-radius: 5px; object-fit: cover; border: 1px solid #1f2937; flex-shrink: 0; }
+        .hero-details { font-size: 12px; color: #9ca3af; display: flex; flex-direction: column; gap: 4px; }
+        .rating { color: #fbbf24; font-weight: bold; font-size: 13px; }
+
+        .download-section { padding: 15px; text-align: center; }
+        .download-heading { color: #ef4444; font-size: 13px; font-weight: bold; margin-bottom: 12px; text-transform: uppercase; }
+        .dl-btn { display: block; background: #111827; border: 1px solid #1f2937; color: #fff; padding: 10px; border-radius: 5px; text-decoration: none; font-size: 12px; font-weight: bold; margin-bottom: 8px; }
+        .dl-btn:hover { background: #ef4444; border-color: #ef4444; }
+
+        .section-box { padding: 10px 15px; }
+        .section-heading { font-size: 13px; font-weight: bold; margin-bottom: 8px; color: #9ca3af; text-transform: uppercase; }
+        
+        .screenshots-scroll { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px; }
+        .screenshot-img { width: 130px; height: 75px; border-radius: 4px; object-fit: cover; border: 1px solid #1f2937; }
+
+        .back-btn { background: #1f2937; color: #fff; border: none; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: bold; cursor: pointer; margin: 10px 15px; display: inline-block; }
+
+        footer { text-align: center; padding: 20px 15px; font-size: 11px; color: #9ca3af; margin-top: 30px; background: #111827; border-top: 1px solid #1f2937; }
     </style>
 </head>
 <body>
 
+    <!-- Header -->
     <header>
-        <a href="index.html" class="logo">🎬 FILMMASTI</a>
+        <a class="logo" onclick="showHome()">🎬 FILMMASTI</a>
+        <div class="search-box">
+            <input type="text" placeholder="Search movies...">
+        </div>
     </header>
 
-    <!-- Movie Hero Info -->
-    <div class="movie-hero">
-        <div class="hero-title">[Hindi-Tamil-Telugu] Watch Online And Download “HDTC-V2”</div>
-        <div class="hero-content">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="hero-poster">
-            <div class="hero-details">
-                <div class="rating">⭐ 7.3 / 10</div>
-                <div><b>Year:</b> 2026</div>
-                <div><b>Genre:</b> Fantasy, Action, Adventure</div>
-                <div><b>Runtime:</b> 195 min</div>
-                <div><b>Director:</b> Nitesh Tiwari</div>
-                <div><b>Release:</b> 05 Nov, 2026</div>
+    <!-- ================= HOME PAGE SECTION ================= -->
+    <div id="homePage">
+        <div class="categories-wrapper">
+            <a href="#" class="cat-badge" style="background:#dc2626;">🔥 HINDI</a>
+            <a href="#" class="cat-badge">⭐ HOLLYWOOD</a>
+            <a href="#" class="cat-badge">🇧🇩 BANGLA</a>
+            <a href="#" class="cat-badge">🎬 DUBBED</a>
+            <a href="#" class="cat-badge sub">📺 WEB SERIES</a>
+        </div>
+
+        <div class="section-header">
+            <span class="section-title">Trending Now</span>
+        </div>
+        <div class="movie-grid">
+            <!-- মুভি কার্ড (ক্লিক করলে ডিটেইলস দেখাবে) -->
+            <div class="movie-card" onclick="showDetails()">
+                <div class="poster-container">
+                    <span class="rating-badge">⭐ 7.3</span>
+                    <span class="quality-badge">HDTC</span>
+                    <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="movie-name">Ramayana: Rise of a Legend</div>
+                    <div class="movie-tags">2026 • Hindi, Tamil</div>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Download Options -->
-    <div class="download-section">
-        <div class="download-heading">⬇️ Download Now - Hindi ⬇️</div>
-        <a href="#" class="dl-btn">📥 Download 1080p</a>
-        <a href="#" class="dl-btn">📥 Download 720p</a>
-        <a href="#" class="dl-btn">📥 Download 480p</a>
-        <a href="#" class="dl-btn">📥 Best Quality - 20 GB</a>
-    </div>
+    <!-- ================= MOVIE DETAILS SECTION ================= -->
+    <div id="detailsPage">
+        <button class="back-btn" onclick="showHome()">← Back to Home</button>
+        
+        <div class="movie-hero">
+            <div class="hero-title">[Hindi-Tamil-Telugu] Watch Online And Download “HDTC-V2”</div>
+            <div class="hero-content">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="hero-poster">
+                <div class="hero-details">
+                    <div class="rating">⭐ 7.3 / 10</div>
+                    <div><b>Year:</b> 2026</div>
+                    <div><b>Genre:</b> Fantasy, Action, Adventure</div>
+                    <div><b>Runtime:</b> 195 min</div>
+                    <div><b>Director:</b> Nitesh Tiwari</div>
+                    <div><b>Release:</b> 05 Nov, 2026</div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Screenshots -->
-    <div class="section-box">
-        <div class="section-heading">Screenshots</div>
-        <div class="screenshots-scroll">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="screenshot-img">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" class="screenshot-img">
-            <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="screenshot-img">
+        <div class="download-section">
+            <div class="download-heading">⬇️ Download Links ⬇️</div>
+            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 1080p (2.1 GB)</a>
+            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 720p (1.2 GB)</a>
+            <a href="DOWNLOAD_LINK_HERE" class="dl-btn" target="_blank">📥 Download 480p (500 MB)</a>
+        </div>
+
+        <div class="section-box">
+            <div class="section-heading">Screenshots</div>
+            <div class="screenshots-scroll">
+                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=300" class="screenshot-img">
+                <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=300" class="screenshot-img">
+            </div>
         </div>
     </div>
 
-    <!-- Cast -->
-    <div class="section-box">
-        <div class="section-heading">Cast</div>
-        <div class="cast-scroll">
-            <div class="cast-item">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100" class="cast-img">
-                <div class="cast-name">Ranbir Kapoor</div>
-            </div>
-            <div class="cast-item">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" class="cast-img">
-                <div class="cast-name">Yash</div>
-            </div>
-            <div class="cast-item">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100" class="cast-img">
-                <div class="cast-name">Sai Pallavi</div>
-            </div>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <footer>
-        <p>FilmMasti does not rip or host any files on its servers. All files or contents hosted on third party websites.</p>
+        <p>FilmMasti does not host any files on its servers.</p>
+        <p style="margin-top: 5px;">&copy; 2026 FilmMasti. All rights reserved.</p>
     </footer>
 
+    <!-- JavaScript to Switch Views -->
+    <script>
+        function showDetails() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('detailsPage').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showHome() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('detailsPage').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
