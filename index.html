@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>FilmStream - Watch & Download Free Bangla, Hindi Movies and Web Series</title>
+    <title>FilmMasti - Watch & Download Free Bangla, Hindi Movies and Web Series</title>
     <meta name="description" content="Download and watch the latest Bangla movies, Hindi dubbed movies, Hollywood movies, and web series online for free in HD quality.">
-    <meta name="keywords" content="bangla movies, free movies download, watch web series, filmstream, latest hindi movies, dual audio movies">
-    <meta name="author" content="FilmStream">
+    <meta name="keywords" content="bangla movies, free movies download, watch web series, filmmasti, latest hindi movies, dual audio movies">
+    <meta name="author" content="FilmMasti">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Social Media Meta Tags (Facebook, Telegram etc.) -->
-    <meta property="og:title" content="FilmStream - Watch & Download Free Movies">
+    <meta property="og:title" content="FilmMasti - Watch & Download Free Movies">
     <meta property="og:description" content="Explore and download the latest movies and web series in HD for free.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500">
@@ -150,12 +150,19 @@
             color: #94a3b8;
             margin-top: 20px;
         }
+
+        /* Hide Netlify Badge */
+        #netlify-badge, .netlify-badge, [class*="netlify-badge"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">FilmStream</a>
+        <a href="#" class="logo">FilmMasti</a>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Search Movies..." onkeyup="filterMovies()">
         </div>
@@ -201,7 +208,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 FilmStream. All rights reserved.</p>
+        <p>&copy; 2026 FilmMasti. All rights reserved.</p>
     </footer>
 
     <script>
